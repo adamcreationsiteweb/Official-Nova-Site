@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-yj6ouiniHmy3MBjG60vhWEl64OKbqj8UtlKonfPGQpI=' 'sha256-aGCSewBfdBDYdh1AA35/fSOyuhGuVPqRFYLkv87nPGU=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-q8E+5MAVuyUPlf1tGA5jC7izM1tfnjWA3qYyg2VdjMA=' 'sha256-qGISFVdi62kwAkIVs1bh7MEiskiHek/oxJwkZIXgVrs=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co https://api.web3forms.com; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NOVA STUDIO — Création et refonte de sites web immersifs</title>
 <meta name="description" content="NOVA STUDIO conçoit des sites web modernes, immersifs et adaptés aux commerces, restaurants, artisans, indépendants et associations.">
@@ -175,12 +176,28 @@ details p{padding:0 0 1.5rem;max-width:40rem;font-size:1.05rem}
 @media(min-width:768px){.eng{grid-template-columns:repeat(3,1fr)}}
 .skip{position:fixed;left:1rem;top:-5rem;z-index:100}.skip:focus{top:1rem}
 .rw{color:var(--foreground);transition:opacity .35s,filter .35s}.rw.o{opacity:0;filter:blur(6px)}
+
+/* ===== compatibilité & performance ===== */
+:root{--ice-rgb:201,218,245;--primary-rgb:61,139,255;--cobalt-rgb:30,70,216;--muted-foreground-rgb:163,177,204}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}body{-webkit-tap-highlight-color:transparent}
+@supports not (color:oklch(.5 .1 200)){:root{--background:#060b1a;--night:#0b1530;--foreground:#eef3fb;--ice:#c9daf5;--card:#0e1a3a;--primary:#3d8bff;--primary-foreground:#060b1a;--cobalt:#1e46d8;--muted:#122046;--muted-foreground:#a3b1cc;--destructive:#ff6b57;--border:rgba(190,205,240,.12);--input:rgba(190,205,240,.16);--glass:rgba(18,30,66,.6)}
+.fb{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.8),transparent 18%),radial-gradient(circle,#1e46d8,#0b1a40 65%,transparent 70%)}.vig{background:radial-gradient(90% 70% at 50% 50%,transparent 40%,rgba(5,9,20,.85) 100%)}.btn-ghost{background:rgba(14,26,58,.4)}}
+@supports not (background:color-mix(in oklab,red,blue)){.chrome,.shine{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--foreground);animation:none}}
+@supports not (min-height:100svh){.hero{min-height:100vh}.chapter{min-height:130vh}.conv{min-height:140vh}}
+@supports not (translate:none){.fb{transform:translate(-50%,-50%);animation:none}}
+@media(pointer:coarse){body::before{display:none}}
+html:not([data-perf=full]) *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html:not([data-perf=full]) .glass{background:rgba(16,28,62,.9)}
+html:not([data-perf=full]) .solid,html:not([data-perf=full]) header.sc{background:var(--background)}
+html[data-perf=ultra] .shine{animation:none}html[data-perf=ultra] body::before{display:none}
+html[data-perf=ultra] .is-in .new,html[data-perf=ultra] .is-in .frame,html[data-perf=ultra] .is-in .scan{animation:none;clip-path:none}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
+<noscript><div style="position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:#060b1a;color:#eef3fb;padding:2rem;text-align:center;font-family:Arial,sans-serif"><p>Ce site a besoin de JavaScript pour s'afficher. Écrivez-nous : <a href="mailto:adam.creation.sites.web@gmail.com" style="color:#3d8bff">adam.creation.sites.web@gmail.com</a></p></div></noscript>
 <div class="intro" aria-hidden="true"><div><div class="il" id="il"></div><div class="ib"></div></div></div>
 <div class="scene-layer" aria-hidden="true"><div id="stage"><div class="fb" id="fb"></div></div><div class="vig"></div></div>
 <div class="cursor-ring" id="cr" aria-hidden="true"></div>
@@ -245,11 +262,13 @@ details p{padding:0 0 1.5rem;max-width:40rem;font-size:1.05rem}
 
 <script>
 /* ===== Données & contenu (portés depuis Sections.tsx, Nav.tsx, site.ts) ===== */
-const SITE={email:"adam.creation.sites.web@gmail.com",socials:[]};/* réseaux : socials:[["Instagram","https://instagram.com/votrecompte"]] */
+const NV=navigator,PERF=(NV.connection&&NV.connection.saveData)||(NV.deviceMemory||8)<=2||(NV.hardwareConcurrency||8)<=2?"ultra":((NV.deviceMemory||8)<=4||(NV.hardwareConcurrency||8)<=4)?"lite":"full";document.documentElement.dataset.perf=PERF;const LITE=PERF!=="full";
+if(window.CanvasRenderingContext2D&&!CanvasRenderingContext2D.prototype.roundRect)CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){r=Math.min(Array.isArray(r)?r[0]:r||0,w/2,h/2);this.moveTo(x+r,y);this.arcTo(x+w,y,x+w,y+h,r);this.arcTo(x+w,y+h,x,y+h,r);this.arcTo(x,y+h,x,y,r);this.arcTo(x,y,x+w,y,r);this.closePath()};
+const SITE={email:"adam.creation.sites.web@gmail.com",socials:[],key:"7601167d-0303-4216-97bf-983a4d02c824"};/* réseaux : socials:[["Instagram","https://instagram.com/votrecompte"]] */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const AR='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
 const UR='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>';
-const m=(c,p)=>`color-mix(in oklab,var(--${c}) ${p}%,transparent)`;
+const CM=window.CSS&&CSS.supports&&CSS.supports("color","color-mix(in oklab,red 50%,blue)"),m=(c,p)=>CM?`color-mix(in oklab,var(--${c}) ${p}%,transparent)`:`rgba(var(--${c}-rgb),${p/100})`;
 const PAL={restaurant:{bg:"#17110d",fg:"#f5e9dc",ac:"#e2a15e",mu:"#9a8270",card:"#231a14",name:"MAISON BRASA",tag:"Cuisine de saison, au feu de bois",cta:"Réserver une table",items:["Entrées","Plats du jour","Desserts"],hero:["#6b3418","#c9742f"]},
 artisan:{bg:"#f2efe8",fg:"#1f2a26",ac:"#2f6b57",mu:"#7b847f",card:"#e6e1d6",name:"ATELIER LIGNE",tag:"Menuiserie sur mesure, pensée pour durer",cta:"Demander un devis",items:["Cuisines","Escaliers","Rénovation"],hero:["#cbb99a","#8c7356"]},
 commerce:{bg:"#fbfaf8",fg:"#141414",ac:"#d24b2f",mu:"#8b8b8b",card:"#efebe5",name:"CÉLESTE",tag:"Objets choisis pour la maison",cta:"Voir la boutique",items:["Céramique","Textile","Luminaires"],hero:["#eadfd2","#c4b29c"]},
@@ -293,7 +312,7 @@ if(Date.now()-T0<3000)return toast("Un instant, puis réessayez");
 try{if(Date.now()-(+localStorage.getItem("ns_last")||0)<60000)return toast("Message déjà envoyé : patientez une minute")}catch(_){}
 const b=f.querySelector("button[type=submit]"),lab=b.innerHTML,ok=$("#ok"),h=`mailto:${SITE.email}?subject=${encodeURIComponent(`[${ty}] Demande de ${n}`)}&body=${encodeURIComponent(`${ms}\n\n— ${n}\n${em}\n${ph}`)}`,ac=new AbortController(),to=setTimeout(()=>ac.abort(),12000);
 b.disabled=true;b.textContent="Envoi en cours…";ok.hidden=true;
-try{const r=await fetch(ENDPOINT,{method:"POST",signal:ac.signal,headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false",_replyto:em,_autoresponse:`Bonjour ${n}, merci pour votre message ! NOVA STUDIO l'a bien reçu et vous répond très vite.`})});
+try{const W=!!SITE.key,B={name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms},r=await fetch(W?"https://api.web3forms.com/submit":ENDPOINT,{method:"POST",signal:ac.signal,headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(W?{...B,access_key:SITE.key,subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,from_name:"NOVA STUDIO"}:{...B,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false",_replyto:em})});
 const j=await r.json();if(!r.ok||j.success===false||j.success==="false")throw (j&&j.message)||0;
 try{localStorage.setItem("ns_last",Date.now())}catch(_){}
 f.reset();ok.hidden=false;ok.textContent=`Message envoyé ✓ Merci ${n} ! Nous avons bien reçu votre demande et nous vous répondons très vite.`;burst();toast("Message envoyé ✓")}
@@ -302,7 +321,7 @@ if(/activat/i.test(why)){ok.textContent=`Dernière étape : le formulaire doit �
 else{try{await fetch("https://formsubmit.co/"+SITE.email,{method:"POST",mode:"no-cors",body:new URLSearchParams({name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false"})});
 try{localStorage.setItem("ns_last",Date.now())}catch(_){}
 f.reset();ok.innerHTML=`Message transmis ✓ Vous recevrez une réponse très vite. Sans nouvelle, écrivez à <a href="${h}">${SITE.email}</a>.`;burst();toast("Message transmis ✓")}
-catch(y){ok.innerHTML=`L'envoi automatique a échoué (${wy}). <a href="${h}">Cliquez ici pour l'envoyer depuis votre messagerie</a> ou écrivez à ${SITE.email}.`}}}
+catch(y){ok.innerHTML=`L'envoi automatique a échoué (${wy} · v5). <a href="${h}">Cliquez ici pour l'envoyer depuis votre messagerie</a> ou écrivez à ${SITE.email}.`}}}
 clearTimeout(to);b.disabled=false;b.innerHTML=lab};
 /* curseur */
 if(matchMedia("(pointer:fine)").matches){const el=$("#cr");let x=0,y=0,cx=0,cy=0;addEventListener("pointermove",e=>{x=e.clientX;y=e.clientY;el.dataset.hover=!!e.target.closest("a,button,[data-cursor]")});(function l(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;el.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(l)})()}
@@ -322,8 +341,8 @@ const lx=mob?x+100*u:x+18*u,ly=mob?y+34*u:y+ch*.5+42*u;c.fillStyle=p.fg;c.font=f
 return cv}
 /* portfolio : images + tilt 3D + vue détaillée */
 const IMG={};
-function initPortfolio(){PROJ.forEach(p=>IMG[p[0]]=drawMockup(p[0],1280,800).toDataURL("image/webp",.85));
-$$(".tilt").forEach((b,i)=>{const p=PROJ[i];b.querySelector(".ph").replaceWith(Object.assign(new Image(),{src:IMG[p[0]],alt:`Maquette fictive du site ${p[1]}, ${p[2].toLowerCase()}`}));
+function initPortfolio(){PROJ.forEach(p=>IMG[p[0]]=drawMockup(p[0],LITE?960:1280,LITE?600:800).toDataURL("image/webp",.85));
+$$(".tilt").forEach((b,i)=>{const p=PROJ[i];b.querySelector(".ph").replaceWith(Object.assign(new Image(),{decoding:"async",src:IMG[p[0]],alt:`Maquette fictive du site ${p[1]}, ${p[2].toLowerCase()}`}));
 b.onpointermove=e=>{const r=b.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;b.style.setProperty("--ry",(x-.5)*8+"deg");b.style.setProperty("--rx",(.5-y)*8+"deg");b.style.setProperty("--x",x*100+"%");b.style.setProperty("--y",y*100+"%")};
 b.onpointerleave=()=>{b.style.setProperty("--rx","0deg");b.style.setProperty("--ry","0deg")};b.onclick=()=>openCase(p)})}
 const cs=$("#case"),INERT=()=>$$("main,header,#fab,#up");let csT,lf;
@@ -348,21 +367,23 @@ const fab=$("#fab"),up=$("#up"),ct=$("#contact"),vis=()=>{fab.classList.toggle("
 if(matchMedia("(pointer:fine)").matches&&!RM){addEventListener("pointermove",e=>{document.body.style.setProperty("--gx",e.clientX+"px");document.body.style.setProperty("--gy",e.clientY+"px")},{passive:true});
 $$(".btn:not(.fab)").forEach(b=>{b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();b.style.translate=`${(e.clientX-r.left-r.width/2)*.18}px ${(e.clientY-r.top-r.height/2)*.28}px`});b.addEventListener("pointerleave",()=>b.style.translate="")})}
 if(!RM){const W=["restaurant","atelier","boutique","association","cabinet","club"],r=$("#rw");let k=0;setInterval(()=>{r.classList.add("o");setTimeout(()=>{r.textContent=W[++k%W.length];r.classList.remove("o")},350)},2400)}
+(document.fonts?Promise.race([Promise.all([document.fonts.load("700 20px Manrope"),document.fonts.load("500 20px Manrope"),document.fonts.load("800 20px Manrope")]),new Promise(r=>setTimeout(r,2000))]):Promise.resolve()).then(initPortfolio,initPortfolio);
 </script>
 
 <script type="module">
 let THREE,RoundedBoxGeometry;try{THREE=await import("three");({RoundedBoxGeometry}=await import("three/addons/geometries/RoundedBoxGeometry.js"))}catch(e){console.warn("3D indisponible",e)}
-const S={story:0,mx:0,my:0},cl=(v)=>Math.min(1,Math.max(0,v)),seg=(s,a,b)=>{const t=cl((s-a)/(b-a));return t*t*(3-2*t)},lerp=(a,b,t)=>a+(b-a)*t;
+let NO3D=false;const S={story:0,mx:0,my:0},cl=(v)=>Math.min(1,Math.max(0,v)),seg=(s,a,b)=>{const t=cl((s-a)/(b-a));return t*t*(3-2*t)},lerp=(a,b,t)=>a+(b-a)*t;
 const reduced=matchMedia("(prefers-reduced-motion:reduce)").matches;
 /* ---------- GSAP / ScrollTrigger (index.tsx) ---------- */
 addEventListener("pointermove",e=>{S.mx=e.clientX/innerWidth*2-1;S.my=e.clientY/innerHeight*2-1},{passive:true});
 gsap.registerPlugin(ScrollTrigger);
+const BL=document.documentElement.dataset.perf==="full";
 function initScroll(){
-ScrollTrigger.create({trigger:"#experience",start:"top top",end:"bottom bottom",onUpdate:st=>S.story=st.progress});
+ScrollTrigger.create({trigger:"#experience",start:"top top",end:"bottom bottom",onUpdate:st=>{S.story=st.progress;if(NO3D)setShow(Math.min(3,Math.floor(seg(st.progress,.56,.72)*4)))}});
 gsap.to("#scroll-progress",{scaleX:1,ease:"none",scrollTrigger:{start:0,end:"max",scrub:true}});
 gsap.to(".hero-content",{yPercent:-35,opacity:0,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom 20%",scrub:true}});
 gsap.utils.toArray(".chapter:not(.hero) .chapter-inner").forEach(el=>{const tl=gsap.timeline({scrollTrigger:{trigger:el.parentElement,start:"top bottom",end:"bottom top",scrub:true}});
-tl.fromTo(el,{opacity:0,y:reduced?0:120,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",ease:"power2.out",duration:.35}).to(el,{opacity:1,duration:.3}).to(el,{opacity:0,y:reduced?0:-120,filter:"blur(6px)",ease:"power2.in",duration:.35})});
+tl.fromTo(el,{opacity:0,y:reduced?0:120,filter:BL?"blur(8px)":"none"},{opacity:1,y:0,filter:BL?"blur(0px)":"none",ease:"power2.out",duration:.35}).to(el,{opacity:1,duration:.3}).to(el,{opacity:0,y:reduced?0:-120,filter:BL?"blur(6px)":"none",ease:"power2.in",duration:.35})});
 gsap.to(".scene-layer",{opacity:.2,ease:"none",scrollTrigger:{trigger:"#services",start:"top bottom",end:"top 40%",scrub:true}});
 gsap.to(".scene-layer",{opacity:.85,ease:"none",immediateRender:false,scrollTrigger:{trigger:"#contact",start:"top bottom",end:"top 30%",scrub:true}});
 gsap.utils.toArray(".reveal").forEach(el=>gsap.from(el,{opacity:0,y:reduced?0:50,duration:1.1,ease:"expo.out",scrollTrigger:{trigger:el,start:"top 88%",toggleActions:"play none none reverse"}}));
@@ -372,13 +393,13 @@ gsap.utils.toArray(".method-step,.ms").forEach(el=>gsap.fromTo(el,{opacity:.15,x
 setTimeout(()=>ScrollTrigger.refresh(),600)}
 /* polices prêtes (canvas : Manrope / Unbounded) */
 await Promise.race([Promise.all([document.fonts.load("700 20px Manrope"),document.fonts.load("500 20px Manrope"),document.fonts.load("800 20px Manrope"),document.fonts.load("700 170px Unbounded")]),new Promise(r=>setTimeout(r,2500))]);
-initPortfolio();initScroll();
+initScroll();
 /* ---------- Scène 3D (Scene.tsx → Three.js natif) ---------- */
-const params=new URLSearchParams(location.search),low=matchMedia("(max-width:768px)").matches||(navigator.hardwareConcurrency??8)<=4,q={low,reduced};
-let gl;try{gl=new THREE.WebGLRenderer({antialias:!low,alpha:true,powerPreference:"high-performance"})}catch(e){}
-if(gl&&params.get("nowebgl")!=="1"){
-$("#fb").remove();const st=$("#stage");st.style.cssText="position:absolute;inset:0";st.appendChild(gl.domElement);
-gl.setPixelRatio(Math.min(devicePixelRatio,low?1.25:1.75));gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1.1;
+const PQ=document.documentElement.dataset.perf,params=new URLSearchParams(location.search),low=PQ!=="full"||matchMedia("(max-width:768px)").matches,q={low,reduced};
+let gl;try{if(PQ==="ultra")throw 0;gl=new THREE.WebGLRenderer({antialias:!low,alpha:true,powerPreference:"high-performance"})}catch(e){}
+NO3D=!gl||params.get("nowebgl")==="1";if(!NO3D){
+const fbEl=$("#fb");fbEl.remove();const st=$("#stage");st.style.cssText="position:absolute;inset:0";st.appendChild(gl.domElement);
+gl.setPixelRatio(Math.min(devicePixelRatio,low?1.1:1.75));gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1.1;
 const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(42,1,.1,80);scene.fog=new THREE.Fog("#050a18",9,34);
 const fit=()=>{gl.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()};fit();addEventListener("resize",fit);
 const BLUE=new THREE.Color("#3d8bff"),COBALT=new THREE.Color("#1e46d8"),sm={s:0,mx:0,my:0,t:0,intro:0},upd=[];
@@ -450,10 +471,13 @@ upd.push(()=>{const vis=seg(sm.s,.62,.72)*(1-seg(sm.s,.9,1)*.6);depth.visible=vi
 const g=new THREE.BufferGeometry();g.setAttribute("position",new THREE.BufferAttribute(p,3));const pts=new THREE.Points(g,new THREE.PointsMaterial({size:.035,color:"#a9c8ff",transparent:true,depthWrite:false,sizeAttenuation:true}));scene.add(pts);
 upd.push(()=>{pts.rotation.z=sm.t*.01+sm.mx*.03;pts.material.opacity=.75*sm.intro})}
 /* boucle */
-const loop=()=>{requestAnimationFrame(loop);if(document.hidden)return;const dt=Math.min(clock.getDelta(),.05);sm.t+=dt;sm.intro=reduced?1:seg(sm.t,0,2.2);const k=1-Math.exp(-5*dt);
+let dead=false;const fp={n:0,t:performance.now()},loop=()=>{if(dead)return;requestAnimationFrame(loop);if(document.hidden){fp.n=0;fp.t=performance.now();return}const dt=Math.min(clock.getDelta(),.05),nw=performance.now();sm.t+=dt;if(sm.t<3){fp.n=0;fp.t=nw}else{fp.n++;if(nw-fp.t>2500){const fps=fp.n*1000/(nw-fp.t);if(fps<24){const rt=document.documentElement;if(rt.dataset.perf==="full")rt.dataset.perf="lite";else if(gl.getPixelRatio()>1){gl.setPixelRatio(1);fit()}else{dead=true;NO3D=true;gl.domElement.remove();st.appendChild(fbEl);return}}fp.n=0;fp.t=nw}}sm.intro=reduced?1:seg(sm.t,0,2.2);const k=1-Math.exp(-5*dt);
 sm.s+=(S.story-sm.s)*k;sm.mx+=(S.mx-sm.mx)*k*.6;sm.my+=(S.my-sm.my)*k*.6;camAt(sm.s);const par=reduced?0:.35;
 cam.position.set(P.x+sm.mx*par,P.y-sm.my*par*.6,P.z+(1-sm.intro)*5);look.lerp(L,.2);cam.lookAt(look);upd.forEach(f=>f());gl.render(scene,cam)};loop();
 }
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
