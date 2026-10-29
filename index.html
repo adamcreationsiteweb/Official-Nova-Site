@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-eFZUj/m7pxjML7IM4Ad4oaI/LmlXB1FF7d1lmUmoJHU=' 'sha256-aGCSewBfdBDYdh1AA35/fSOyuhGuVPqRFYLkv87nPGU=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NOVA STUDIO — Création et refonte de sites web immersifs</title>
 <meta name="description" content="NOVA STUDIO conçoit des sites web modernes, immersifs et adaptés aux commerces, restaurants, artisans, indépendants et associations.">
@@ -132,9 +134,50 @@ footer{display:flex;flex-direction:column;justify-content:space-between;gap:1rem
 .cg{grid-template-columns:2fr 1fr}.mgrid{grid-template-columns:1fr 1.2fr}.mgrid>:first-child{position:sticky;top:8rem;align-self:start}#method-track{padding-left:4rem}.mline,#method-line,#method-orb{left:1.25rem}.ms h3{font-size:3rem}
 .cgrid{grid-template-columns:1fr 1fr}form{padding:2.5rem}.two{grid-template-columns:1fr 1fr}footer{flex-direction:row}.cursor-ring{display:block}#priv .in{padding:8rem 1.25rem}}
 @media(pointer:coarse){.cursor-ring{display:none!important}}
+
+/* ===== extras ===== */
+.shine{background:linear-gradient(100deg,var(--foreground) 30%,var(--primary) 44%,var(--ice) 50%,var(--foreground) 66%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;animation:shine 7s ease-in-out infinite}
+@keyframes shine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+body::before{content:"";position:fixed;inset:0;z-index:5;pointer-events:none;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,40%),oklch(.68 .18 255/15%),transparent 60%)}
+.hero-in>:nth-child(5){animation-delay:2.3s}
+.hchips{margin-top:2rem;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.8rem}
+.hc{border:1px solid var(--border);border-radius:999px;padding:.45rem .95rem;font-weight:700;color:var(--muted-foreground);transition:all .3s}
+.hc:hover{border-color:var(--primary);color:var(--foreground);background:color-mix(in oklab,var(--primary) 18%,transparent);transform:translateY(-2px)}
+button.scrolltxt{color:var(--muted-foreground);padding:.5rem 1rem}button.scrolltxt:hover{color:var(--foreground)}
+.btn:disabled{opacity:.6;pointer-events:none}
+.mq{position:relative;z-index:10;overflow:hidden;border-block:1px solid var(--border);padding:1.2rem 0;background:color-mix(in oklab,var(--background) 88%,transparent)}
+.mq>div{display:flex;gap:3rem;padding-right:3rem;width:max-content;animation:mq 40s linear infinite}
+.mq:hover>div{animation-play-state:paused}
+.mq span{font-family:var(--fd);font-size:clamp(1.2rem,2.8vw,2.2rem);white-space:nowrap;color:transparent;-webkit-text-stroke:1px color-mix(in oklab,var(--ice) 55%,transparent)}
+.mq span:nth-child(even){color:var(--primary);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+#fq{margin-top:3rem;max-width:52rem}
+details{border-bottom:1px solid var(--border)}
+summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem 0;cursor:pointer;font-family:var(--fd);font-size:1.05rem;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.8rem;line-height:1;color:var(--primary);transition:transform .4s var(--ease-out)}
+details[open] summary::after{transform:rotate(45deg)}
+summary:hover{color:var(--ice)}
+details p{padding:0 0 1.5rem;max-width:40rem;font-size:1.05rem}
+.fab{position:fixed;right:1.25rem;bottom:1.25rem;z-index:45;translate:0 220%;transition:translate .6s var(--ease-out),transform .4s var(--ease-out),box-shadow .4s}.fab.show{translate:0 0}
+#up{position:fixed;left:1.25rem;bottom:1.25rem;z-index:45;width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;translate:0 220%;transition:translate .6s var(--ease-out),border-color .3s}#up.show{translate:0 0}#up:hover{border-color:var(--primary)}
+#toast{position:fixed;left:50%;bottom:1.5rem;z-index:95;translate:-50% 200%;padding:.8rem 1.3rem;border-radius:999px;background:var(--primary);color:var(--primary-foreground);font-weight:700;font-size:.85rem;transition:translate .5s var(--ease-out);pointer-events:none}#toast.show{translate:-50% 0}
+@media(prefers-reduced-motion:reduce){.mq>div,.shine{animation:none}}
+
+.case{overflow-x:hidden}.case .in{padding-bottom:6rem}
+.dev{position:relative;border-radius:1.25rem;border:1px solid var(--border);background:var(--card)}
+.dev .bar{display:flex;align-items:center;gap:.4rem;padding:.7rem 1rem;border-bottom:1px solid var(--border)}.dev .bar i{width:.6rem;height:.6rem;border-radius:50%;background:var(--muted-foreground);opacity:.5}.dev .bar span{margin-left:.8rem;font-size:.75rem;color:var(--muted-foreground)}
+.dev .d1{width:100%;border-radius:0 0 1.2rem 1.2rem}
+.dev .ph2{position:absolute;right:.75rem;bottom:-1.5rem;width:24%;border-radius:1rem;border:3px solid var(--night);box-shadow:var(--glow),0 20px 40px oklch(0 0 0/50%)}
+.pal{display:flex;gap:.5rem;margin-top:2rem}.pal span{width:2.2rem;height:2.2rem;border-radius:50%;border:1px solid var(--border)}
+.cbt{display:flex;flex-wrap:wrap;gap:0 .75rem;align-items:flex-start}
+.eng{display:grid;gap:1.25rem;margin-top:3rem}.eng>div{border-radius:1.5rem;padding:1.75rem}.eng svg{color:var(--primary);margin-bottom:1rem}.eng h3{font-size:1.2rem}.eng p{margin-top:.6rem}
+@media(min-width:768px){.eng{grid-template-columns:repeat(3,1fr)}}
+.skip{position:fixed;left:1rem;top:-5rem;z-index:100}.skip:focus{top:1rem}
+.rw{color:var(--foreground);transition:opacity .35s,filter .35s}.rw.o{opacity:0;filter:blur(6px)}
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
@@ -155,44 +198,54 @@ footer{display:flex;flex-direction:column;justify-content:space-between;gap:1rem
 <section id="experience" aria-label="Expérience NOVA">
 <div id="top" class="chapter hero"><div class="hero-content hero-in wrap">
 <p class="eyebrow">Studio de création web</p>
-<h1 class="display-xl chrome" style="max-width:64rem">LE DIGITAL PREND UNE AUTRE DIMENSION.</h1>
-<p class="lead mu">Nous concevons des sites web modernes, immersifs et adaptés à votre activité.</p>
+<h1 class="display-xl chrome shine" style="max-width:64rem">LE DIGITAL PREND UNE AUTRE DIMENSION.</h1>
+<p class="lead mu">Nous concevons des sites web modernes, immersifs et adaptés à votre activité : <b id="rw" class="rw">restaurant</b>.</p>
 <div class="row"><a href="#projets" class="btn btn-primary">Découvrir nos créations <i class="ar"></i></a><a href="#contact" class="btn btn-ghost">Parlons de votre projet</a></div>
-</div><div class="scrolltxt mu">DÉFILER</div></div>
+<div class="hchips"><span class="mu">Voir une démo :</span><button class="hc" data-i="0">Restaurant</button><button class="hc" data-i="1">Artisan</button><button class="hc" data-i="2">Commerce</button><button class="hc" data-i="3">Association</button></div>
+</div><button class="scrolltxt" id="sd" aria-label="Faire défiler la page">DÉFILER</button></div>
 <div id="chapters"></div>
 <div class="chapter conv"><div class="chapter-inner"><p class="eyebrow">Convergence</p><h2 class="display-xl chrome">VOTRE PROCHAINE IDÉE COMMENCE ICI.</h2><a href="#contact" class="btn btn-primary">Lancer la conversation <i class="ar"></i></a></div></div>
 </section>
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
 <section id="services" class="solid"><div class="wrap"><p class="eyebrow reveal">Services</p><h2 class="display-lg reveal" style="max-width:56rem">DU DESIGN À L'EXPÉRIENCE.</h2><div class="stack" id="svcs"></div></div></section>
+<section class="solid" style="padding-top:4rem;padding-bottom:4rem"><div class="wrap"><p class="eyebrow reveal">Nos engagements</p><h2 class="display-lg reveal" style="max-width:56rem">UN SITE QUI VOUS RESSEMBLE, ET QUI RASSURE.</h2><div class="eng"><div class="glass reveal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5ZM3 13l9 5 9-5"/></svg><h3>Sur mesure</h3><p class="mu">Aucun modèle recyclé : votre site est dessiné pour votre activité et votre image.</p></div><div class="glass reveal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><h3>Pensé mobile</h3><p class="mu">Une lecture confortable sur smartphone, tablette et ordinateur.</p></div><div class="glass reveal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg><h3>Protégé</h3><p class="mu">Formulaire protégé contre le spam, données jamais revendues, site durci contre les injections.</p></div></div></div></section>
 <section id="projets" class="solid"><div class="wrap">
 <div class="phead"><div><p class="eyebrow reveal">Projets de démonstration</p><h2 class="display-lg reveal" style="max-width:56rem">DES IDÉES. DES UNIVERS. DES EXPÉRIENCES.</h2></div><p class="reveal mu">Ces projets sont des créations fictives réalisées pour illustrer notre approche. Ils ne représentent pas des clients réels.</p></div>
 <div class="pgrid" id="pg"></div></div>
-<div class="case" id="case" role="dialog" aria-modal="true" hidden></div></section>
+</section>
 <section id="methode" class="solid"><div class="wrap mgrid"><div><p class="eyebrow reveal">Méthode</p><h2 class="display-lg reveal">UNE BONNE IDÉE MÉRITE UNE BELLE EXÉCUTION.</h2></div>
 <ol id="method-track"><div class="mline"></div><div class="mline" id="method-line"></div><div id="method-orb"></div></ol></div></section>
+<section id="faq" class="solid"><div class="wrap"><p class="eyebrow reveal">Questions fréquentes</p><h2 class="display-lg reveal" style="max-width:56rem">VOUS VOUS DEMANDEZ SÛREMENT…</h2><div id="fq"></div></div></section>
 <section id="contact" class="solid" style="background:none;backdrop-filter:none"><div class="wrap cgrid">
 <div><p class="eyebrow reveal">Contact</p><h2 class="display-lg reveal chrome">ET SI ON DONNAIT VIE À VOTRE PROJET ?</h2><p class="reveal mu" style="margin-top:1.5rem;max-width:28rem;font-size:1.125rem">Vous avez une idée, un site à moderniser ou simplement une question ? Parlons-en.</p>
 <a class="btn btn-primary reveal" id="mailbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> Contacter NOVA STUDIO</a>
-<div class="reveal cinfo mu"><p>E-mail : <a class="ll" id="maillnk"></a></p><p class="so" id="soc"></p></div></div>
+<div class="reveal cinfo mu"><p>E-mail : <a class="ll" id="maillnk"></a> <button type="button" class="ll" id="cpy" style="margin-left:.6rem;color:var(--primary);font-weight:700">Copier</button></p><p class="so" id="soc"></p></div></div>
 <form id="f" class="glass reveal" novalidate>
 <div class="two"><label>Nom<input class="field" name="name" autocomplete="name" placeholder="Votre nom" maxlength="100"><span class="err" data-e="name"></span></label>
 <label>Adresse e-mail<input class="field" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" maxlength="255"><span class="err" data-e="email"></span></label></div>
 <label>Type de projet<select class="field" name="type"><option value="" disabled selected>Sélectionnez…</option><option>Création de site</option><option>Refonte de site</option><option>Adaptation mobile</option><option>Autre question</option></select><span class="err" data-e="type"></span></label>
+<div class="two"><label>Téléphone (facultatif)<input class="field" name="phone" type="tel" autocomplete="tel" placeholder="06 00 00 00 00" maxlength="30"></label><label>Budget indicatif<select class="field" name="budget"><option value="" selected>Je ne sais pas encore</option><option>Moins de 500 €</option><option>500 – 1 500 €</option><option>1 500 – 3 000 €</option><option>Plus de 3 000 €</option></select></label></div>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
 <label>Message<textarea class="field" name="message" rows="5" maxlength="2000" placeholder="Parlez-nous de votre activité et de votre projet…"></textarea><span class="err" data-e="message"></span></label>
-<button type="submit" class="btn btn-primary full">Préparer mon message <i class="ar"></i></button>
-<small class="mu">En envoyant, votre logiciel de messagerie s'ouvre avec votre demande préremplie : rien n'est transmis tant que vous ne l'envoyez pas vous-même. <a class="ll" href="#confidentialite">Confidentialité</a></small>
+<button type="submit" class="btn btn-primary full">Envoyer mon message <i class="ar"></i></button>
+<small class="mu">Votre message nous arrive directement par e-mail et ne sert qu'à vous répondre. <a class="ll" href="#confidentialite">Confidentialité</a></small>
 <p class="ok" id="ok" role="status" hidden></p></form></div>
 <footer class="mu"><p>© <span id="yr"></span> NOVA STUDIO — Création et refonte de sites web.</p><a class="ll" href="#confidentialite">Politique de confidentialité</a></footer></section>
 </main>
+<div class="case" id="case" role="dialog" aria-modal="true" hidden></div>
+<a href="#experience" class="btn btn-primary sm skip">Aller au contenu</a>
+<div id="toast" role="status" aria-live="polite"></div>
+<a href="#contact" class="btn btn-primary sm fab" id="fab">Démarrer un projet</a><button id="up" class="glass" aria-label="Retour en haut"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <div id="priv" hidden><div class="in"><a href="#top" class="ll mu" style="font-size:.875rem">← Retour à l'accueil</a><h1 class="display-lg">Politique de confidentialité</h1>
 <div class="tx mu"><p>Ce document pose les bases de la politique de confidentialité du site. Il doit être complété (identité du responsable, adresse, mentions légales) avant la mise en ligne définitive.</p>
-<h2>Données collectées</h2><p>Le formulaire de contact ne transmet aucune donnée à un serveur. Il prépare un e-mail dans votre propre logiciel de messagerie avec votre nom, votre adresse e-mail, le type de projet et votre message. Rien n'est envoyé tant que vous ne validez pas l'envoi vous-même.</p>
+<h2>Données collectées</h2><p>Quand vous envoyez le formulaire de contact, votre nom, votre adresse e-mail, votre téléphone (facultatif), le type de projet, votre budget indicatif et votre message sont transmis par e-mail à NOVA STUDIO via le service d'envoi FormSubmit. Ils ne sont pas conservés sur ce site.</p>
 <h2>Finalité</h2><p>Les informations reçues par e-mail servent uniquement à répondre à votre demande et ne sont ni vendues ni cédées.</p>
-<h2>Cookies</h2><p>Ce site n'utilise pas de cookies de suivi publicitaire.</p>
+<h2>Cookies</h2><p>Ce site n'utilise pas de cookies de suivi publicitaire. Un horodatage est gardé dans le stockage local de votre navigateur après un envoi, uniquement pour limiter les abus (un message par minute).</p>
 <h2>Vos droits</h2><p>Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a class="mlk"></a>.</p></div></div></div>
 
 <script>
 /* ===== Données & contenu (portés depuis Sections.tsx, Nav.tsx, site.ts) ===== */
-const SITE={email:"contact@votre-domaine.fr",socials:[["Instagram","https://www.instagram.com/"],["LinkedIn","https://www.linkedin.com/"]]};
+const SITE={email:"adam.creation.sites.web@gmail.com",socials:[]};/* réseaux : socials:[["Instagram","https://instagram.com/votrecompte"]] */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const AR='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
 const UR='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>';
@@ -206,7 +259,7 @@ const PROJ=[["restaurant","Maison Brasa","Restaurant","Un univers chaleureux et 
 ["artisan","Atelier Ligne","Artisan","Un design clair et professionnel pour un menuisier sur mesure.","Des réalisations présentées comme un portfolio, une demande de devis accessible depuis chaque page et un ton rassurant.",["Galerie de réalisations","Demande de devis guidée","Zone d'intervention claire"]],
 ["commerce","Céleste","Commerce","Une présentation moderne et épurée d'objets pour la maison.","Une vitrine éditoriale où chaque produit dispose de l'espace nécessaire. Catégories simples, fiches produits soignées.",["Catalogue par univers","Fiches produits détaillées","Horaires et accès boutique"]],
 ["club","AS Horizon","Club sportif","Une identité dynamique pour une association sportive locale.","Calendrier des rencontres, équipes et inscriptions réunis dans une interface énergique, pensée pour les parents comme pour les licenciés.",["Calendrier des matchs","Pages équipes","Inscriptions en ligne"]]];
-const LINKS=[["#services","Services"],["#projets","Projets"],["#methode","Méthode"],["#contact","Contact"]];
+const LINKS=[["#services","Services"],["#projets","Projets"],["#methode","Méthode"],["#faq","FAQ"],["#contact","Contact"]];
 $("#lk").innerHTML=LINKS.map(l=>`<li><a class="ll" href="${l[0]}">${l[1]}</a></li>`).join("");
 $("#mm").innerHTML=LINKS.map(l=>`<li><a href="${l[0]}">${l[1]}</a></li>`).join("");
 $$(".ar").forEach(e=>e.outerHTML=AR);
@@ -225,14 +278,27 @@ $("#mailbtn").href="mailto:"+SITE.email;$("#maillnk").href="mailto:"+SITE.email;
 $("#soc").innerHTML=SITE.socials.map(s=>`<a class="ll" href="${s[1]}" target="_blank" rel="noreferrer">${s[0]}</a>`).join("");$("#yr").textContent=new Date().getFullYear();
 /* nav: état scroll + menu mobile + pseudo-page confidentialité (remplace la route /confidentialite) */
 const hd=$("#hd"),on=()=>hd.classList.toggle("sc",scrollY>40);on();addEventListener("scroll",on,{passive:true});
-$("#bt").onclick=()=>{const o=$("#mm").hidden;$("#mm").hidden=!o;$("#bt").setAttribute("aria-expanded",o)};$$("#mm a").forEach(a=>a.onclick=()=>$("#mm").hidden=true);
+const menu=o=>{$("#mm").hidden=!o;$("#bt").setAttribute("aria-expanded",o);$("#bt").setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu");$("#bi").innerHTML=o?'<path d="M18 6 6 18M6 6l12 12"/>':'<path d="M4 6h16M4 12h16M4 18h16"/>'};$("#bt").onclick=()=>menu($("#mm").hidden);$$("#mm a").forEach(a=>a.onclick=()=>menu(false));
 const hs=()=>{const o=location.hash=="#confidentialite";$("#priv").hidden=!o;document.body.style.overflow=o?"hidden":"";if(o)$("#priv").scrollTop=0};addEventListener("hashchange",hs);hs();
-/* formulaire (zod → validation native, même messages, même mailto) */
-$("#f").onsubmit=e=>{e.preventDefault();const v=Object.fromEntries(new FormData(e.target)),E={},n=(v.name||"").trim(),em=(v.email||"").trim(),ms=(v.message||"").trim();
-if(!n)E.name="Indiquez votre nom";if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))E.email="Adresse e-mail invalide";if(!v.type)E.type="Choisissez un type de projet";if(ms.length<10)E.message="Votre message doit contenir au moins 10 caractères";
-$$(".err").forEach(s=>s.textContent=E[s.dataset.e]||"");if(Object.keys(E).length)return;
-const h=`mailto:${SITE.email}?subject=${encodeURIComponent(`[${v.type}] Demande de ${n}`)}&body=${encodeURIComponent(`${ms}\n\n— ${n}\n${em}`)}`;location.href=h;
-const ok=$("#ok");ok.hidden=false;ok.innerHTML=`Votre messagerie devrait s'ouvrir. Si rien ne se passe, <a href="${h}">cliquez ici</a> ou écrivez directement à ${SITE.email}.`};
+/* formulaire : envoi automatique par e-mail (FormSubmit) + protections anti-spam */
+const ENDPOINT="https://formsubmit.co/ajax/"+SITE.email,RM=matchMedia("(prefers-reduced-motion:reduce)").matches,T0=Date.now(),TYPES=["Création de site","Refonte de site","Adaptation mobile","Autre question"];
+const toast=t=>{const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),3200)};
+$("#cpy").onclick=async()=>{try{await navigator.clipboard.writeText(SITE.email);toast("Adresse e-mail copiée")}catch(_){toast(SITE.email)}};
+function burst(){if(RM)return;const r=$("#f").getBoundingClientRect(),x=r.left+r.width/2,y=Math.min(r.bottom-60,innerHeight-80);for(let i=0;i<48;i++){const d=document.createElement("i"),a=Math.random()*6.28,k=140+Math.random()*280;d.style.cssText=`position:fixed;left:${x}px;top:${y}px;width:7px;height:7px;border-radius:${i%2?"50%":"2px"};background:hsl(${205+Math.random()*45} 90% ${60+Math.random()*30}%);z-index:100;pointer-events:none`;document.body.appendChild(d);d.animate([{transform:"translate(0,0) scale(1)",opacity:1},{transform:`translate(${Math.cos(a)*k}px,${Math.sin(a)*k-140}px) scale(0)`,opacity:0}],{duration:1000+Math.random()*700,easing:"cubic-bezier(.16,1,.3,1)"}).onfinish=()=>d.remove()}}
+const cln=(x,m)=>String(x||"").replace(m?/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g:/[\u0000-\u001f\u007f]/g," ").trim();
+$("#f").onsubmit=async e=>{e.preventDefault();const f=e.target,v=Object.fromEntries(new FormData(f)),E={},n=cln(v.name).slice(0,100),em=cln(v.email).slice(0,255),ms=cln(v.message,1).slice(0,2000),ph=cln(v.phone).slice(0,30),ty=cln(v.type),bu=cln(v.budget).slice(0,40);
+if(!n)E.name="Indiquez votre nom";if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em))E.email="Adresse e-mail invalide";if(!TYPES.includes(ty))E.type="Choisissez un type de projet";if(ms.length<10)E.message="Votre message doit contenir au moins 10 caractères";else if((ms.match(/https?:\/\//gi)||[]).length>2)E.message="Pas plus de 2 liens dans le message";
+$$(".err").forEach(s=>s.textContent=E[s.dataset.e]||"");if(Object.keys(E).length)return;if(v._honey)return;
+if(Date.now()-T0<3000)return toast("Un instant, puis réessayez");
+try{if(Date.now()-(+localStorage.getItem("ns_last")||0)<60000)return toast("Message déjà envoyé : patientez une minute")}catch(_){}
+const b=f.querySelector("button[type=submit]"),lab=b.innerHTML,ok=$("#ok"),h=`mailto:${SITE.email}?subject=${encodeURIComponent(`[${ty}] Demande de ${n}`)}&body=${encodeURIComponent(`${ms}\n\n— ${n}\n${em}\n${ph}`)}`,ac=new AbortController(),to=setTimeout(()=>ac.abort(),12000);
+b.disabled=true;b.textContent="Envoi en cours…";ok.hidden=true;
+try{const r=await fetch(ENDPOINT,{method:"POST",signal:ac.signal,referrerPolicy:"no-referrer",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false",_replyto:em,_autoresponse:`Bonjour ${n}, merci pour votre message ! NOVA STUDIO l'a bien reçu et vous répond très vite.`})});
+const j=await r.json();if(!r.ok||j.success===false||j.success==="false")throw 0;
+try{localStorage.setItem("ns_last",Date.now())}catch(_){}
+f.reset();ok.hidden=false;ok.textContent=`Message envoyé ✓ Merci ${n} ! Nous avons bien reçu votre demande et nous vous répondons très vite.`;burst();toast("Message envoyé ✓")}
+catch(_){ok.hidden=false;ok.innerHTML=`L'envoi automatique a échoué. <a href="${h}">Cliquez ici pour l'envoyer depuis votre messagerie</a> ou écrivez à ${SITE.email}.`}
+clearTimeout(to);b.disabled=false;b.innerHTML=lab};
 /* curseur */
 if(matchMedia("(pointer:fine)").matches){const el=$("#cr");let x=0,y=0,cx=0,cy=0;addEventListener("pointermove",e=>{x=e.clientX;y=e.clientY;el.dataset.hover=!!e.target.closest("a,button,[data-cursor]")});(function l(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;el.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(l)})()}
 /* maquettes canvas (mockups.ts) */
@@ -255,17 +321,32 @@ function initPortfolio(){PROJ.forEach(p=>IMG[p[0]]=drawMockup(p[0],1280,800).toD
 $$(".tilt").forEach((b,i)=>{const p=PROJ[i];b.querySelector(".ph").replaceWith(Object.assign(new Image(),{src:IMG[p[0]],alt:`Maquette fictive du site ${p[1]}, ${p[2].toLowerCase()}`}));
 b.onpointermove=e=>{const r=b.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;b.style.setProperty("--ry",(x-.5)*8+"deg");b.style.setProperty("--rx",(.5-y)*8+"deg");b.style.setProperty("--x",x*100+"%");b.style.setProperty("--y",y*100+"%")};
 b.onpointerleave=()=>{b.style.setProperty("--rx","0deg");b.style.setProperty("--ry","0deg")};b.onclick=()=>openCase(p)})}
-const cs=$("#case");let csT;
-function openCase(p){clearTimeout(csT);cs.setAttribute("aria-label","Présentation du projet "+p[1]);
-cs.innerHTML=`<div class="in"><div class="top"><p class="eyebrow">${p[2]} · Démonstration fictive</p><button class="btn btn-ghost sm" id="cx" aria-label="Fermer la présentation"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Fermer</button></div><h3 class="display-xl chrome">${p[1]}</h3><div class="cg"><div class="cimg"><img src="${IMG[p[0]]}" alt="Maquette complète du site fictif ${p[1]}"></div><div><p class="l mu">${p[4]}</p><ul>${p[5].map(x=>`<li>${x}</li>`).join("")}</ul><a href="#contact" class="btn btn-primary" id="cc">Un projet similaire ? ${AR}</a></div></div></div>`;
-cs.hidden=false;document.body.style.overflow="hidden";requestAnimationFrame(()=>requestAnimationFrame(()=>cs.dataset.open=true));$("#cx").focus();$("#cx").onclick=closeCase;$("#cc").onclick=closeCase}
-function closeCase(){cs.dataset.open=false;csT=setTimeout(()=>{cs.hidden=true;document.body.style.overflow=""},700)}
-addEventListener("keydown",e=>{if(e.key=="Escape"&&!cs.hidden)closeCase()});
+const cs=$("#case"),INERT=()=>$$("main,header,#fab,#up");let csT,lf;
+function openCase(p){clearTimeout(csT);const i=PROJ.indexOf(p),k=p[0],c=PAL[k],mob=drawMockup(k,390,844).toDataURL("image/webp",.85);if(cs.hidden)lf=document.activeElement;
+cs.setAttribute("aria-label","Présentation du projet "+p[1]);
+cs.innerHTML=`<div class="in"><div class="top"><p class="eyebrow">${p[2]} · Démonstration fictive · ${i+1}/${PROJ.length}</p><button class="btn btn-ghost sm" id="cx" aria-label="Fermer la présentation"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg> Fermer</button></div>
+<h3 class="display-xl chrome">${p[1]}</h3><p class="l mu" style="margin-top:1rem;max-width:40rem">${p[3]}</p>
+<div class="cg"><div class="dev"><div class="bar"><i></i><i></i><i></i><span>${p[1].toLowerCase().replace(/\s/g,"")}.fr</span></div><img class="d1" src="${IMG[k]}" alt="Maquette fictive du site ${p[1]} sur ordinateur"><img class="ph2" src="${mob}" alt="Maquette fictive du site ${p[1]} sur smartphone"></div>
+<div><p class="l mu">${p[4]}</p><ul>${p[5].map(x=>`<li>${x}</li>`).join("")}</ul><div class="pal" role="img" aria-label="Palette de la démo">${[c.bg,c.ac,c.fg].map(x=>`<span style="background:${x}"></span>`).join("")}</div>
+<div class="cbt"><a href="#contact" class="btn btn-primary" id="cc">Un projet similaire ? ${AR}</a><button class="btn btn-ghost" id="cp" aria-label="Projet précédent">←</button><button class="btn btn-ghost" id="cn">Suivant ${AR}</button></div></div></div></div>`;
+cs.hidden=false;cs.scrollTop=0;document.body.style.overflow="hidden";INERT().forEach(e=>e.inert=true);requestAnimationFrame(()=>requestAnimationFrame(()=>cs.dataset.open=true));
+$("#cx").focus();$("#cx").onclick=closeCase;$("#cn").onclick=()=>openCase(PROJ[(i+1)%PROJ.length]);$("#cp").onclick=()=>openCase(PROJ[(i+PROJ.length-1)%PROJ.length]);
+$("#cc").onclick=e=>{e.preventDefault();closeCase();setTimeout(()=>$("#contact").scrollIntoView({behavior:RM?"auto":"smooth"}),760)}}
+function closeCase(){cs.dataset.open=false;csT=setTimeout(()=>{cs.hidden=true;document.body.style.overflow="";INERT().forEach(e=>e.inert=false);lf&&lf.focus&&lf.focus({preventScroll:true})},700)}
+addEventListener("keydown",e=>{if(cs.hidden||cs.dataset.open!=="true")return;if(e.key==="Escape")closeCase();if(e.key==="ArrowRight")$("#cn").click();if(e.key==="ArrowLeft")$("#cp").click()});
+/* ===== extras : démos en un clic, FAQ, marquee, boutons flottants, effets ===== */
+$$(".hc").forEach(b=>b.onclick=()=>IMG[PROJ[0][0]]?openCase(PROJ[+b.dataset.i]):toast("Les démos se chargent…"));
+$("#sd").onclick=()=>scrollBy({top:innerHeight*.9,behavior:"smooth"});
+$("#mq").innerHTML=[0,1].map(()=>["SITE VITRINE","REFONTE","MOBILE FIRST","RÉSERVATION EN LIGNE","BOUTIQUE","SUR MESURE","ANIMATIONS","ASSOCIATIONS"].map(w=>`<span>${w}</span>`).join("")).join("");
+$("#fq").innerHTML=[["Combien coûte un site ?","Chaque projet est différent. Après un premier échange sur votre activité et vos besoins, vous recevez un devis clair et détaillé."],["J'ai déjà un site, pouvez-vous le refaire ?","Oui. On garde ce qui fonctionne et on repense le reste : identité visuelle, structure et parcours des visiteurs."],["Mon site sera-t-il lisible sur smartphone ?","Oui. Chaque site est pensé pour s'afficher confortablement sur mobile, tablette et ordinateur."],["Comment démarrer ?","Remplissez le formulaire de contact : votre message nous arrive directement par e-mail et nous revenons vers vous."]].map(q=>`<details><summary>${q[0]}</summary><p class="mu">${q[1]}</p></details>`).join("");
+const fab=$("#fab"),up=$("#up"),ct=$("#contact"),vis=()=>{fab.classList.toggle("show",scrollY>innerHeight*.8&&ct.getBoundingClientRect().top>innerHeight*.6);up.classList.toggle("show",scrollY>innerHeight*1.5)};vis();addEventListener("scroll",vis,{passive:true});up.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+if(matchMedia("(pointer:fine)").matches&&!RM){addEventListener("pointermove",e=>{document.body.style.setProperty("--gx",e.clientX+"px");document.body.style.setProperty("--gy",e.clientY+"px")},{passive:true});
+$$(".btn:not(.fab)").forEach(b=>{b.addEventListener("pointermove",e=>{const r=b.getBoundingClientRect();b.style.translate=`${(e.clientX-r.left-r.width/2)*.18}px ${(e.clientY-r.top-r.height/2)*.28}px`});b.addEventListener("pointerleave",()=>b.style.translate="")})}
+if(!RM){const W=["restaurant","atelier","boutique","association","cabinet","club"],r=$("#rw");let k=0;setInterval(()=>{r.classList.add("o");setTimeout(()=>{r.textContent=W[++k%W.length];r.classList.remove("o")},350)},2400)}
 </script>
 
 <script type="module">
-import * as THREE from "three";
-import {RoundedBoxGeometry} from "three/addons/geometries/RoundedBoxGeometry.js";
+let THREE,RoundedBoxGeometry;try{THREE=await import("three");({RoundedBoxGeometry}=await import("three/addons/geometries/RoundedBoxGeometry.js"))}catch(e){console.warn("3D indisponible",e)}
 const S={story:0,mx:0,my:0},cl=(v)=>Math.min(1,Math.max(0,v)),seg=(s,a,b)=>{const t=cl((s-a)/(b-a));return t*t*(3-2*t)},lerp=(a,b,t)=>a+(b-a)*t;
 const reduced=matchMedia("(prefers-reduced-motion:reduce)").matches;
 /* ---------- GSAP / ScrollTrigger (index.tsx) ---------- */
