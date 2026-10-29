@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-eFZUj/m7pxjML7IM4Ad4oaI/LmlXB1FF7d1lmUmoJHU=' 'sha256-aGCSewBfdBDYdh1AA35/fSOyuhGuVPqRFYLkv87nPGU=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-yj6ouiniHmy3MBjG60vhWEl64OKbqj8UtlKonfPGQpI=' 'sha256-aGCSewBfdBDYdh1AA35/fSOyuhGuVPqRFYLkv87nPGU=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>NOVA STUDIO — Création et refonte de sites web immersifs</title>
@@ -293,11 +293,16 @@ if(Date.now()-T0<3000)return toast("Un instant, puis réessayez");
 try{if(Date.now()-(+localStorage.getItem("ns_last")||0)<60000)return toast("Message déjà envoyé : patientez une minute")}catch(_){}
 const b=f.querySelector("button[type=submit]"),lab=b.innerHTML,ok=$("#ok"),h=`mailto:${SITE.email}?subject=${encodeURIComponent(`[${ty}] Demande de ${n}`)}&body=${encodeURIComponent(`${ms}\n\n— ${n}\n${em}\n${ph}`)}`,ac=new AbortController(),to=setTimeout(()=>ac.abort(),12000);
 b.disabled=true;b.textContent="Envoi en cours…";ok.hidden=true;
-try{const r=await fetch(ENDPOINT,{method:"POST",signal:ac.signal,referrerPolicy:"no-referrer",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false",_replyto:em,_autoresponse:`Bonjour ${n}, merci pour votre message ! NOVA STUDIO l'a bien reçu et vous répond très vite.`})});
-const j=await r.json();if(!r.ok||j.success===false||j.success==="false")throw 0;
+try{const r=await fetch(ENDPOINT,{method:"POST",signal:ac.signal,headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false",_replyto:em,_autoresponse:`Bonjour ${n}, merci pour votre message ! NOVA STUDIO l'a bien reçu et vous répond très vite.`})});
+const j=await r.json();if(!r.ok||j.success===false||j.success==="false")throw (j&&j.message)||0;
 try{localStorage.setItem("ns_last",Date.now())}catch(_){}
 f.reset();ok.hidden=false;ok.textContent=`Message envoyé ✓ Merci ${n} ! Nous avons bien reçu votre demande et nous vous répondons très vite.`;burst();toast("Message envoyé ✓")}
-catch(_){ok.hidden=false;ok.innerHTML=`L'envoi automatique a échoué. <a href="${h}">Cliquez ici pour l'envoyer depuis votre messagerie</a> ou écrivez à ${SITE.email}.`}
+catch(x){const why=x&&x.message?x.name+": "+x.message:String(x),wy=why.replace(/[<>&"'`]/g,"").slice(0,120);console.error("Formulaire :",x);ok.hidden=false;
+if(/activat/i.test(why)){ok.textContent=`Dernière étape : le formulaire doit être activé. Un e-mail de confirmation vient d'être envoyé à ${SITE.email}. Cliquez sur le bouton qu'il contient (vérifiez les indésirables), puis renvoyez votre message.`}
+else{try{await fetch("https://formsubmit.co/"+SITE.email,{method:"POST",mode:"no-cors",body:new URLSearchParams({name:n,email:em,phone:ph||"Non renseigné",type:ty,budget:bu||"Non précisé",message:ms,_subject:`Nouveau message NOVA STUDIO — ${ty} (${n})`,_template:"table",_captcha:"false"})});
+try{localStorage.setItem("ns_last",Date.now())}catch(_){}
+f.reset();ok.innerHTML=`Message transmis ✓ Vous recevrez une réponse très vite. Sans nouvelle, écrivez à <a href="${h}">${SITE.email}</a>.`;burst();toast("Message transmis ✓")}
+catch(y){ok.innerHTML=`L'envoi automatique a échoué (${wy}). <a href="${h}">Cliquez ici pour l'envoyer depuis votre messagerie</a> ou écrivez à ${SITE.email}.`}}}
 clearTimeout(to);b.disabled=false;b.innerHTML=lab};
 /* curseur */
 if(matchMedia("(pointer:fine)").matches){const el=$("#cr");let x=0,y=0,cx=0,cy=0;addEventListener("pointermove",e=>{x=e.clientX;y=e.clientY;el.dataset.hover=!!e.target.closest("a,button,[data-cursor]")});(function l(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;el.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(l)})()}
