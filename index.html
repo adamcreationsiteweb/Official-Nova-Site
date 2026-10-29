@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-q8E+5MAVuyUPlf1tGA5jC7izM1tfnjWA3qYyg2VdjMA=' 'sha256-qGISFVdi62kwAkIVs1bh7MEiskiHek/oxJwkZIXgVrs=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co https://api.web3forms.com; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-8BmafpI4W2hH1lKyhXprwa7uD/POTe7rmEsvlFduQZc=' 'sha256-UK9O+rbB3KhDsGQrE55qyNAJCpV7WHc47zV2U5f4bE4=' 'sha256-q8E+5MAVuyUPlf1tGA5jC7izM1tfnjWA3qYyg2VdjMA=' 'sha256-qGISFVdi62kwAkIVs1bh7MEiskiHek/oxJwkZIXgVrs=' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src https://formsubmit.co https://api.web3forms.com; base-uri 'none'; object-src 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -195,6 +195,37 @@ html[data-perf=ultra] .is-in .new,html[data-perf=ultra] .is-in .frame,html[data-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>html.hw{--primary:#ff7a1a;--primary-foreground:#1a0b00;--cobalt:#6a1fb8;--night:#1a0a2e;--background:#0d0618;--glow:0 0 60px -10px rgba(255,122,26,.55)}
+html.hw[data-perf=full] .scene-layer{filter:hue-rotate(170deg) saturate(1.2)}
+html.hw:not([data-perf=full]) .fb{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.8),transparent 18%),radial-gradient(circle,#ff7a1a,#3a1060 65%,transparent 70%)}
+.hwe{position:fixed;bottom:-10px;width:5px;height:5px;border-radius:50%;background:#ff9a3c;opacity:0;z-index:1;pointer-events:none;animation:hwu 9s linear infinite}
+@keyframes hwu{0%{transform:translateY(0);opacity:0}10%{opacity:.8}100%{transform:translateY(-105vh);opacity:0}}
+.hwk{position:absolute;z-index:20;width:34px;height:34px;padding:2px;opacity:.5;transition:opacity .2s,transform .2s}
+.hwk:hover,.hwk:focus{opacity:1;transform:scale(1.2)}.hwk.ok{opacity:0;pointer-events:none}
+.hwc{position:fixed;left:10px;bottom:10px;z-index:45;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#1a0a2e;border:1px solid #ff7a1a;color:#ffd9b0;font:700 12px/1 Manrope,Arial,sans-serif;letter-spacing:.06em}
+.hwm{position:fixed;left:10px;bottom:56px;z-index:46;max-width:min(300px,calc(100vw - 20px));padding:12px 14px;border-radius:14px;background:#1a0a2e;border:1px solid #ff7a1a;color:#fff;font:500 13px/1.4 Manrope,Arial,sans-serif}
+.hwm a{color:#ff9a3c;font-weight:800;text-decoration:underline}.hwm button{display:block;margin-top:8px;color:#ffd9b0;font-size:12px;text-decoration:underline}
+
+html.hw header{top:24px}
+html.hw .vig{background:radial-gradient(90% 70% at 50% 50%,transparent 40%,rgba(26,6,40,.9) 100%)}
+.hwb{position:fixed;left:0;right:0;top:0;height:24px;z-index:55;overflow:hidden;background:#ff7a1a;color:#1a0b00;font:800 11px/24px Manrope,Arial,sans-serif;letter-spacing:.14em;white-space:nowrap;pointer-events:none}
+.hwb span{display:inline-block;padding-left:100%;animation:hwq 38s linear infinite}
+.hwb.st span{animation:none;padding-left:12px}
+@keyframes hwq{to{transform:translateX(-100%)}}
+.hwo{--m:clamp(60px,13vw,130px);position:fixed;top:96px;right:7%;width:var(--m);height:var(--m);border-radius:50%;z-index:1;pointer-events:none;background:radial-gradient(circle at 35% 35%,#fff4d6,#ffc46b 60%,#d98a2b);box-shadow:0 0 60px 10px rgba(255,170,60,.35)}
+html[data-perf=ultra] .hwo{box-shadow:none}
+.hww{position:fixed;top:24px;width:clamp(60px,12vw,110px);z-index:49;pointer-events:none;opacity:.55}
+.hww.l{left:0}.hww.r{right:0;transform:scaleX(-1)}.hww svg{display:block;width:100%;height:auto}
+.hwf{position:fixed;left:0;right:0;bottom:0;height:22vh;z-index:44;pointer-events:none;background:linear-gradient(to top,rgba(106,31,184,.4),transparent)}
+.hwt{position:fixed;left:-60px;z-index:42;pointer-events:none;animation:hwx 16s linear infinite}
+@keyframes hwx{0%{transform:translate(0,0)}50%{transform:translate(55vw,-30px)}100%{transform:translate(110vw,10px)}}
+.hwg{position:fixed;right:4%;bottom:14%;z-index:42;pointer-events:none;opacity:.8;animation:hwy 5s ease-in-out infinite alternate}
+@keyframes hwy{from{transform:translate(0,0)}to{transform:translate(-18px,-22px)}}
+.hwl{position:fixed;left:0;right:0;top:0;bottom:0;z-index:41;pointer-events:none;background:#c9b5ff;opacity:0;animation:hwz 14s linear infinite}
+@keyframes hwz{0%,92%,96%,100%{opacity:0}93%{opacity:.14}94%{opacity:0}95%{opacity:.1}}
+.hwfl{animation:hwfk 3.5s infinite}
+@keyframes hwfk{0%,46%,100%{opacity:1}48%{opacity:.2}50%{opacity:1}52%{opacity:.4}54%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.hwe,.hwt,.hwl{display:none}.hwg,.hwfl,.hwb span{animation:none}.hwb span{padding-left:12px}}</style>
 </head>
 <body>
 <noscript><div style="position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:#060b1a;color:#eef3fb;padding:2rem;text-align:center;font-family:Arial,sans-serif"><p>Ce site a besoin de JavaScript pour s'afficher. Écrivez-nous : <a href="mailto:adam.creation.sites.web@gmail.com" style="color:#3d8bff">adam.creation.sites.web@gmail.com</a></p></div></noscript>
@@ -475,6 +506,53 @@ let dead=false;const fp={n:0,t:performance.now()},loop=()=>{if(dead)return;reque
 sm.s+=(S.story-sm.s)*k;sm.mx+=(S.mx-sm.mx)*k*.6;sm.my+=(S.my-sm.my)*k*.6;camAt(sm.s);const par=reduced?0:.35;
 cam.position.set(P.x+sm.mx*par,P.y-sm.my*par*.6,P.z+(1-sm.intro)*5);look.lerp(L,.2);cam.lookAt(look);upd.forEach(f=>f());gl.render(scene,cam)};loop();
 }
+</script>
+<script>(function(){try{
+var D=document,H=D.documentElement,Q=location.search,N=new Date();
+var on=N>=new Date(2026,9,29)&&N<new Date(2026,10,2);
+if(/[?&]halloween=1/.test(Q))on=true;if(/[?&]halloween=0/.test(Q))on=false;
+if(!on)return;
+var REWARD='Bravo, vous avez tout trouvé ! Écrivez « CITROUILLE » dans votre message et nous vous réservons une surprise.';
+var P=H.getAttribute('data-perf')||'ultra',i,el;
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+var ok3d=window.CSS&&CSS.supports&&CSS.supports('transform-style','preserve-3d');
+var flat=P==='ultra'||rm||!ok3d;
+H.className+=' hw'+(flat?' hw-flat':'');
+D.title='🎃 '+D.title;
+var B=D.body,mo=P==='ultra'||rm;
+function add(c,html,st){var e=D.createElement('div');e.className=c;e.setAttribute('aria-hidden','true');if(html)e.innerHTML=html;if(st)e.style.cssText=st;B.appendChild(e);return e}
+var TX='HAPPENING HALLOWEEN • 31 OCTOBRE • 5 CITROUILLES CACHÉES SUR LA PAGE • JOYEUX HALLOWEEN • ';
+add('hwb'+(mo?' st':''),'<span>'+(mo?'HAPPENING HALLOWEEN • 5 CITROUILLES À TROUVER':TX+TX)+'</span>');
+add('hwo');add('hwf');
+var WEB='<svg viewBox="0 0 100 100"><g stroke="#cdbbff" stroke-width="1" fill="none"><path d="M0 0L100 0M0 0L0 100M0 0L90 55M0 0L55 90M0 0L100 25M0 0L25 100"/><path d="M20 0Q18 18 0 20M42 0Q38 38 0 42M65 0Q58 58 0 65M90 0Q78 78 0 90"/></g></svg>';
+add('hww l',WEB);add('hww r',WEB);
+if(P!=='ultra'){
+var BAT='<svg viewBox="0 0 40 20" width="36" height="18"><path fill="#0a0410" stroke="#ff7a1a" stroke-width=".6" d="M20 6c2 0 3 2 4 4 2-3 6-5 12-4-3 2-3 5-4 8-2-2-4-2-6 1-1-2-3-3-6-3s-5 1-6 3c-2-3-4-3-6-1-1-3-1-6-4-8 6-1 10 1 12 4 1-2 2-4 4-4z"/></svg>';
+var nb=P==='full'?4:2;for(i=0;i<nb;i++)add('hwt',BAT,'top:'+(14+i*17)+'%;animation-delay:'+(i*4)+'s;animation-duration:'+(14+i*3)+'s');
+add('hwg','<svg viewBox="0 0 40 50" width="46" height="58"><path fill="#fff" d="M20 2C9 2 4 11 4 22v26l6-5 5 5 5-5 5 5 5-5 6 5V22C36 11 31 2 20 2z"/><circle cx="14" cy="21" r="3" fill="#1a0a2e"/><circle cx="26" cy="21" r="3" fill="#1a0a2e"/><ellipse cx="20" cy="31" rx="3" ry="4" fill="#1a0a2e"/></svg>');
+if(P==='full'&&!rm)add('hwl');
+}
+var eb=D.querySelector('.eyebrow');if(eb){eb.textContent='Spécial Halloween • Studio de création web';if(!mo)eb.className+=' hwfl'}
+var n=P==='full'?14:(P==='lite'?6:0);
+for(i=0;i<n;i++){el=D.createElement('i');el.className='hwe';el.setAttribute('aria-hidden','true');el.style.left=(4+i*(92/n))+'%';el.style.animationDelay=(i*0.7)+'s';el.style.animationDuration=(7+(i%4))+'s';B.appendChild(el)}
+var SVG='<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><ellipse cx="16" cy="19" rx="13" ry="11" fill="#ff7a1a"/><path d="M16 8c0-3 1-5 3-6" stroke="#5a8f2a" stroke-width="3" fill="none"/><path d="M16 9c-3 4-3 16 0 21M9 11c-3 5-2 13 1 17M23 11c3 5 2 13-1 17" stroke="#b34700" stroke-width="1.4" fill="none"/></svg>';
+var KEY='hw26',found=[];try{found=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+var spots=[[9,86],[24,6],[47,91],[66,8],[88,50]],M=D.querySelector('main')||B,T=spots.length;
+var chip=D.createElement('button');chip.className='hwc';chip.type='button';B.appendChild(chip);
+var msg=null;
+function count(){chip.innerHTML=SVG.replace(/30/g,'16')+'<span>HAPPENING HALLOWEEN</span><b>'+found.length+'/'+T+'</b>'}
+function say(t,ms){if(msg&&msg.parentNode)msg.parentNode.removeChild(msg);msg=D.createElement('div');msg.className='hwm';msg.setAttribute('role','status');msg.innerHTML='<div>'+t+'</div><button type="button">Fermer</button>';msg.lastChild.onclick=function(){if(msg.parentNode)msg.parentNode.removeChild(msg)};B.appendChild(msg);if(ms)setTimeout(function(){if(msg&&msg.parentNode)msg.parentNode.removeChild(msg)},ms)}
+var HELP='🎃 Happening Halloween : '+T+' citrouilles se cachent sur la page. Saurez-vous toutes les trouver ?';
+var WIN=REWARD+' <a href="#contact">Nous écrire</a>';
+function mk(k){var b=D.createElement('button');b.type='button';b.className='hwk'+(found.indexOf(k)>-1?' ok':'');b.setAttribute('aria-label','Citrouille cachée');b.style.top=spots[k][0]+'%';b.style.left=spots[k][1]+'%';b.innerHTML=SVG;
+b.onclick=function(){if(found.indexOf(k)<0){found.push(k);try{localStorage.setItem(KEY,JSON.stringify(found))}catch(e){}}b.className='hwk ok';count();say(found.length>=T?WIN:'🎃 '+found.length+'/'+T+' trouvées, continuez !',found.length>=T?0:3500)};M.appendChild(b)}
+for(i=0;i<T;i++)mk(i);
+count();
+chip.onclick=function(){say(found.length>=T?WIN:HELP,0)};
+if(found.length<T)setTimeout(function(){say(HELP,7000)},2800);
+}catch(e){}})();</script>
+</body>
+</html>
 </script>
 </body>
 </html>
